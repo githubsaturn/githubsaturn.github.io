@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Dockerfile to captain-definition</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- Leave those next 4 lines if you care about users using IE8 -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body class="bg-light">
+      <br/>
+      <div class="container">
+      <div class="text-center">
+         <img class="d-block mx-auto mb-4" src="https://raw.githubusercontent.com/githubsaturn/captainduckduck/master/graphics/icon.png" alt="" width="72" height="72">
+         <h2>Dockerfile to captain-definition Convertor</h2>
+      </div>
+      <div class="row">
+         <div class="col-sm-12">
+            <h2> Dockerfile</h2>
+            <div class="row">
+               <textarea class="col-sm-12" id="dockerfile-id" rows="19" cols="70"></textarea>      
+            </div>
+            <br/>
+            <br/>
+            <button id="convert" class="pull-right btn btn-primary btn-lg btcn-block" onclick=convert() type="submit">CONVERT</button>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <h2> captain-definition</h2>
+            <div class="row">
+               <textarea readonly class="col-sm-12"  id="captain-definition-id" rows="19" cols="70"></textarea>    
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+      </div>
+	   <script>
+	      function convert(){
+	        
+	        var dockerfileContent = document.getElementById("dockerfile-id").value;
+	        
+	        var dockerfileLines =  dockerfileContent.split('\n');
+	      
+	        dockerfileLines = dockerfileLines.filter(function(entry) { return entry.trim() != ''; });
+	      
+	      
+	        var captainDefinition = {
+	            schemaVersion :1,
+	            dockerfileLines :  dockerfileLines
+	        };
+	      
+	        document.getElementById("captain-definition-id").value =
+	          JSON.stringify(captainDefinition, null, 2);
+	      
+	      }
+	      
+	      
+	   </script>
+      <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   </body>
+</html>
